@@ -3,17 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LazyLoadedComponent } from './lazy-loaded.component';
-import { Child1Component } from './child1.component';
-import { Child2Component } from './child2.component';
+import { ChildComponent } from './child.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LazyLoadedComponent,
         children: [
-            {path: '', redirectTo: 'child1'},
-            {path: 'child1', component: Child1Component},
-            {path: 'child2', component: Child2Component}
+            {path: '', redirectTo: 'child/1'},
+            {path: 'child/:childId', component: ChildComponent}
         ]
     }
 ];
@@ -21,8 +19,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         LazyLoadedComponent,
-        Child1Component,
-        Child2Component
+        ChildComponent,
     ],
     imports: [
         CommonModule,
