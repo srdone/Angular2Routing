@@ -36,6 +36,10 @@ export class ChildrenStore {
         this._children.next(newChildren);
     }
 
+    getChild(childId: number): Observable<Child> {
+        return this._children.map(children => children.find(child => child.id === childId));
+    }
+
     updateChild(editedChild: Child) {
         let currentChildren = this._children.getValue();
         let childIndex = currentChildren.findIndex(child => child.id === editedChild.id);

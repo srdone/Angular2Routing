@@ -26,11 +26,14 @@ export class ChildComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.params
-            .subscribe((params: Params) => {
-                this.childrenStore.children.subscribe(children => this.currentChild = children.find(child => +params['childId'] === child.id))
+            .switchMap((params: Params) => {
+                // this is bad practice: we should not have side-effects in our RxJS operators
+                // need to figure out how to pass a different structure up - probably create a new observable
                 this.childId = +params['childId'];
                 this.lastChildId = +params['lastChildId'];
-            });
+                return this.childrenStore.getChild(+params['childId'])
+            })
+            .subscribe((child: Child) => this.currentChild = child);
     }
 
     goToPreviousChild() {
