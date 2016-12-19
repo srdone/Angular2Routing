@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LazyLoadedComponent } from './lazy-loaded.component';
 import { ChildComponent } from './child.component';
 
+import { ChildrenStore } from './children.store';
+
 const routes: Routes = [
     {
         path: '',
@@ -27,6 +29,9 @@ const routes: Routes = [
     ],
     exports: [
         LazyLoadedComponent
+    ],
+    providers: [
+        ChildrenStore
     ]
 })
 export class LazyLoadedModule {}
