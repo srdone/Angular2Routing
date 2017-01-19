@@ -7,13 +7,13 @@ import { Child } from './child.interface';
 export class ChildrenStore {
     private _children: BehaviorSubject<Array<Child>> = new BehaviorSubject([
         {
-            id: 1,
+            id: '1',
             name: 'Bamm Bamm Rubble',
             father: 'Barney Rubble',
             mother: 'Betty Rubble'
         },
         {
-            id: 2,
+            id: '2',
             name: 'Pebbles Flintstone',
             father: 'Fred Flintstone',
             mother: 'Wilma Flintstone'
@@ -29,14 +29,14 @@ export class ChildrenStore {
         this._children.next(newChildren);
     }
 
-    removeChild(childID: number) {
+    removeChild(childID: string) {
         let currentChildren = this._children.getValue();
         let newChildren = currentChildren.filter(child => child.id !== childID);
 
         this._children.next(newChildren);
     }
 
-    getChild(childId: number): Observable<Child> {
+    getChild(childId: string): Observable<Child> {
         return this._children.map(children => children.find(child => child.id === childId));
     }
 

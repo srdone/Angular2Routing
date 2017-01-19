@@ -7,6 +7,7 @@ import { Child } from './child.interface';
 @Component({
     template: `
         <h3>Lazy Loaded Module</h3>
+            <add-child></add-child>
         <ul>
             <li *ngFor="let child of children | async">
                 <a [routerLink]="['child', child.id]">{{child.name}}</a>
